@@ -12,6 +12,12 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+/public/uploads/*
+/public/*
 
 /node_modules
 /yarn-error.log
