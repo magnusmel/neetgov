@@ -13,7 +13,7 @@
 </nav>
  -->
  <nav class="navbar navbar-inverse">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
       <span class="sr-only">Toggle navigation</span>
@@ -21,19 +21,29 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       </button>
-      <a href="/"><img src="http://4.bp.blogspot.com/-Yp__6jsC768/WLqhUlOxbKI/AAAAAAAAGW8/88WLFB8tRko43XjthNQSDnzj8GwgNODSACK4B/s1600/SBTET%2BWORLD1.png" width="60%" /></a>
+      <a href="/">
+        <img src="http://4.bp.blogspot.com/-Yp__6jsC768/WLqhUlOxbKI/AAAAAAAAGW8/88WLFB8tRko43XjthNQSDnzj8GwgNODSACK4B/s1600/SBTET%2BWORLD1.png" width="60%">
+        <!-- <img src="img/sbtetworld.png" width="90%" /> -->
+      </a>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+      <!-- <ul class="nav navbar-nav">
         <li><%= link_to('', '#') %></li>
         <li><%= link_to('', '#') %></li>
         <li><%= link_to('', '#') %></li>
-      </ul>
+      </ul> -->
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to('Home', '/') %></li>
-        <li><%= link_to('Ecet','/ecet-subjects') %></li>
-        <li><%= link_to('Eamcet','#') %></li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">CETS<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to('E-CET','/ecet-subjects', :class => "btn btn-primary") %></li>
+          <li><%= link_to('EAM-CET','#',:class => "btn btn-primary") %></li>
+          <li><%= link_to('PG-CET','#', :class => "btn btn-primary") %></li>
+          <li><%= link_to('I-CET','#',:class => "btn btn-primary") %></li>          
+        </ul>
+      </li>
           <li><%= link_to('My Account', edit_user_registration_path) %></li>
           <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
       </ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212124752) do
+ActiveRecord::Schema.define(version: 20171213063630) do
 
   create_table "eamcets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "subject"
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20171212124752) do
     t.string "c"
     t.string "d"
     t.string "answer"
-    t.integer "test_count"
-    t.string "type"
-    t.string "que_image"
+    t.integer "testcount"
+    t.string "imageyes"
+    t.string "questionimage"
     t.string "imagea"
     t.string "imageb"
     t.string "imagec"
