@@ -21,6 +21,7 @@
   <div class="row">
     <div class="col-sm-4">
       <h4 class="text-primary"><%= q.subject.upcase %></h4>
+      <%= %>
     </div>
     <div class="col-sm-4">
        <!-- Current Time :<b class="text-danger"> <%= Time.now.strftime('%l:%M %p')%></b> -->
@@ -85,12 +86,24 @@
                   <% if i == 0 %>
                   <div class="row">
                     <div class="col-sm-6">
-                      <%= b.radio_button  %><%= image_tag(q.imagea,:class => 'img', alt: "sbtet, neet") %>
+                      <%= b.radio_button  %>
+
+                      <% if !q.imagea.blank?   %>
+                        <%= image_tag(q.imagea,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.a %>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if i == 1 %>
                     <div class="col-sm-6">
-                      <%= b.radio_button  %><%= image_tag(q.imageb,:class => 'img', alt: "sbtet, neet") %>
+                      <%= b.radio_button  %>
+                      <% if !q.imageb.blank?   %>
+                        <%= image_tag(q.imageb,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.b %>
+                      <% end %>
+
                     </div></div>
                     <br>
                   <% end %>
@@ -102,19 +115,31 @@
                     </div> -->
                    <div class="row">
                     <div class="col-sm-6">
-                   <%= b.radio_button  %><%= image_tag(q.imagec,:class => 'img', alt: "sbtet, neet") %>
+                   <%= b.radio_button  %>
+                   <% if !q.imagec.blank?   %>
+                        <%= image_tag(q.imagec,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.c %>
+                      <% end %>
+                   
                     </div>
                   <% end %>
                   <% if i == 3 %>
                    <div class="col-sm-6">
-                   <%= b.radio_button  %><%= image_tag(q.imaged,:class => 'img', alt: "sbtet, neet") %>
+                   <%= b.radio_button  %>
+                    <% if !q.imaged.blank?   %>
+                         <%= image_tag(q.imaged,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.d %>
+                      <% end %>
+                  
                     </div></div>
                   <% end %>
                   <% i+=1 %>
                   
                   <% end %>
                 <% else %>
-
+                <!-- ################## Normal options ########################### -->
                 <% i=0 %>
                   <%= f.collection_radio_buttons :answer,  ["a","b","c","d"],  :first, :last, item_wrapper_tag: false, :required => true, boolean_style: :inline do |b| %>
                   <% if i == 0 %>

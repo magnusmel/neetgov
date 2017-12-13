@@ -15,18 +15,18 @@ class SuperadminController < ApplicationController
   	user =User.where(:email => superadmin_params[:email]).last
   	if user.blank?
   		@user = User.new(superadmin_params)
-		@user.fname = superadmin_params[:fname]
-		@user.lname = superadmin_params[:lname]
-		puts superadmin_params[:lname]
-		@user.district = "Prakasam"
-		@user.state = "Andhra Pradesh"
-		@user.mobile = 8019466433
-		@user.password = SecureRandom.uuid[0..7]
-		@user.password_confirmation = @user.password
-		@user.add_role :admin
-		@user.reset_password_token = SecureRandom.hex(32)
-		@user.reset_password_sent_at = Time.now
-		@user.skip_confirmation!
+  		@user.fname = superadmin_params[:fname]
+  		@user.lname = superadmin_params[:lname]
+  		puts superadmin_params[:lname]
+  		@user.apdistrict = "Prakasam"
+  		@user.state = "Andhra Pradesh"
+  		@user.mobile = 8019466433
+  		@user.password = SecureRandom.uuid[0..7]
+  		@user.password_confirmation = @user.password
+  		@user.add_role :admin
+  		@user.reset_password_token = SecureRandom.hex(32)
+  		@user.reset_password_sent_at = Time.now
+  		@user.skip_confirmation!
 
 		if @user.valid?
 			@user.save
