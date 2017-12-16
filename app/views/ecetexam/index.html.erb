@@ -1,22 +1,26 @@
 <% content_for :title, "NEET GOV ONLINE EXAMINATION PORTAL" %>
 <% content_for :description, "Neet Gov Providing All india Educations Updates, Notifications, Time tables, Results, Syllabus books, Etc. This Info for Helping Students We Are Providing Accurately for Official Conformation contact college section and higher authorities"%>
-  <div class="container">    
-    <div class="row text-center">
-     
-    </div>
-
-    <div class="text-center flickr_pagination">
-      <%= will_paginate @questions, :class => "flickr_pagination", :previous_label => "Previous", :next_label => 'Next', :page_links => true, renderer: BootstrapPagination::Rails %>
-    </div>
-    <style type="text/css">
-      .img{
+<style type="text/css">
+.will{
+  width:5%; border:black solid 1px; border-radius: 5px; padding: 1%; float: left; margin:0.1%; text-align: center;
+}
+ .img{
         width:250px;
         height:150px;
         border:2px;
         border-radius: 5px;
       }
-    </style>
+</style>
+  <div class="container">    
+  
 
+    <!-- <div class="text-center flickr_pagination">
+      <%= will_paginate @questions, :class => "flickr_pagination", :previous_label => "Previous", :next_label => 'Next', :page_links => true,:inner_window => 200, renderer: BootstrapPagination::Rails %>
+    </div>
+ -->    
+
+    <!-- <a href="/exam/ecet/cse/1?pageno=<%= @questions.current_page %>">current</a> -->
+    
 <% @questions.each do |q| %>
   <div class="row">
     <div class="col-sm-4">
@@ -104,7 +108,8 @@
                         <%= q.b %>
                       <% end %>
 
-                    </div></div>
+                    </div>
+                  </div>
                     <br>
                   <% end %>
                   <% if i == 2 %>
@@ -113,17 +118,17 @@
                         <ins class='adsbygoogle' data-ad-client='ca-pub-7665698555914778' data-ad-slot='5852755247' style='display:inline-block;min-width:300px;max-width:1100px;width:100%;height:140px;'></ins> 
                       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                     </div> -->
-                   <div class="row">
-                    <div class="col-sm-6">
-                   <%= b.radio_button  %>
-                   <% if !q.imagec.blank?   %>
-                        <%= image_tag(q.imagec,:class => 'img', alt: "sbtet, neet") %>
-                      <% else %>
-                        <%= q.c %>
-                      <% end %>
-                   
-                    </div>
-                  <% end %>
+                     <div class="row">
+                      <div class="col-sm-6">
+                         <%= b.radio_button  %>
+                         <% if !q.imagec.blank?   %>
+                              <%= image_tag(q.imagec,:class => 'img', alt: "sbtet, neet") %>
+                          <% else %>
+                              <%= q.c %>
+                          <% end %>
+                      </div>
+                    <% end %>
+
                   <% if i == 3 %>
                    <div class="col-sm-6">
                    <%= b.radio_button  %>
@@ -138,6 +143,7 @@
                   <% i+=1 %>
                   
                   <% end %>
+
                 <% else %>
                 <!-- ################## Normal options ########################### -->
                 <% i=0 %>
@@ -175,29 +181,19 @@
                   <% end %>
                  <!--  <%= f.input :answer, as: :radio_buttons, :required => true, :label => false, collection: ([[q.a.html_safe,'a'] , [q.b.html_safe,'b'], [q.c.html_safe,'c'], [q.d.html_safe, 'd']]), wrapper: :vertical_radio_and_checkboxes %> -->
                 <% end %>
-                <div class="actions">
-                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                  <!-- school9edu_main_Blog1_1x1_as -->
+                <div class="actions ">
+                   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                  <!-- Responsive -->
                   <ins class="adsbygoogle"
                        style="display:block"
                        data-ad-client="ca-pub-7665698555914778"
-                       data-ad-slot="9074553645"
+                       data-ad-slot="5852755247"
                        data-ad-format="auto"></ins>
                   <script>
                   (adsbygoogle = window.adsbygoogle || []).push({});
                   </script>
-                  <%= f.submit "submit", :class => "btn btn-primary"%>
                 </div>
-                <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-                <!-- school9edumain_Blog1_1x1_as -->
-               <!--  <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7665698555914778"
-                     data-ad-slot="9074553645"
-                     data-ad-format="auto"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script> -->
+                <%= f.submit "Submit",:class => "btn btn-primary m-b" %>
               <% end %>
           <% end %>
           
@@ -214,17 +210,30 @@
             <% end %>
             <%= f.hidden_field :testcount, :value => q.testcount %> 
             <% if q.imageyes == "imageyes"%>
-              <% i=0 %>
-                  <%= f.collection_radio_buttons :answer, ["a","b","c","d"],  :first, :last, item_wrapper_tag: false, :required => true, boolean_style: :inline do |b| %>
+                <!-- ################## Images options ########################### -->
+                  <% i=0 %>
+                  <%= f.collection_radio_buttons :answer,  ["a","b","c","d"],  :first, :last, item_wrapper_tag: false, :required => true, boolean_style: :inline do |b| %>
                   <% if i == 0 %>
                   <div class="row">
                     <div class="col-sm-6">
-                      <%= b.radio_button  %><%= image_tag(q.imagea,:class => 'img', alt: "sbtet, neet") %>
+                      <%= b.radio_button  %>
+
+                      <% if !q.imagea.blank?   %>
+                        <%= image_tag(q.imagea,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.a %>
+                      <% end %>
                     </div>
                   <% end %>
                   <% if i == 1 %>
                     <div class="col-sm-6">
-                      <%= b.radio_button  %><%= image_tag(q.imageb,:class => 'img', alt: "sbtet, neet") %>
+                      <%= b.radio_button  %>
+                      <% if !q.imageb.blank?   %>
+                        <%= image_tag(q.imageb,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.b %>
+                      <% end %>
+
                     </div></div>
                     <br>
                   <% end %>
@@ -236,12 +245,24 @@
                     </div> -->
                    <div class="row">
                     <div class="col-sm-6">
-                   <%= b.radio_button  %><%= image_tag(q.imagec,:class => 'img', alt: "sbtet, neet") %>
+                   <%= b.radio_button  %>
+                   <% if !q.imagec.blank?   %>
+                        <%= image_tag(q.imagec,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.c %>
+                      <% end %>
+                   
                     </div>
                   <% end %>
                   <% if i == 3 %>
                    <div class="col-sm-6">
-                   <%= b.radio_button  %><%= image_tag(q.imaged,:class => 'img', alt: "sbtet, neet") %>
+                   <%= b.radio_button  %>
+                    <% if !q.imaged.blank?   %>
+                         <%= image_tag(q.imaged,:class => 'img', alt: "sbtet, neet") %>
+                      <% else %>
+                        <%= q.d %>
+                      <% end %>
+                  
                     </div></div>
                   <% end %>
                   <% i+=1 %>
@@ -285,8 +306,22 @@
               <% end %>
               <!-- 
               <%= f.input :answer, as: :radio_buttons, :required => true, :label => false, collection: ([[q.a.html_safe,'a'] , [q.b.html_safe,'b'], [q.c.html_safe,'c'], [q.d.html_safe, 'd']]), wrapper: :vertical_radio_and_checkboxes %> -->
-            <% end %><br><br>
-            <%= f.submit "Submit", :class => "btn btn-primary"%>
+            <% end %>
+
+            <div class="actions">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Responsive -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7665698555914778"
+                     data-ad-slot="5852755247"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+                <%= f.submit "Submit",:class => "btn btn-primary m-b" %>
+          
           <% end %>
             <% end %>
             
@@ -318,6 +353,38 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 </div>
+
+<div class="container"> 
+    <% i=1 %>
+
+      <% @qq.ids.to_a.each do |a| %>
+        <% if Ecetexam.find_by_question_id(a).blank? %>
+          <% color = "white"%>
+        <% else %>
+          <% color = "lightgreen"%>
+        <% end %>
+        <% if @questions.current_page == i %>
+            <a href="/exam/ecet/cse/1?page=<%=i %>">
+            <div class="will" style="background-color:lightblue;"><%= i %></div>
+             </a>
+        <% else %>
+          <a href="/exam/ecet/cse/1?page=<%=i %>">
+            <div class="will" style="background-color:<%= color %>;"><%= i %></div>
+             </a>
+        <% end %>
+     
+       <% i+=1 %>
+        <% end %>
+      </div>
+      <br>
+<style type="text/css">
+@media only screen and (max-width: 1000px){
+        .will{
+  width:10%; border:black solid 1px; border-radius: 5px; padding: 1%; float: left; margin:0.1%; text-align: center;
+}
+       }
+ 
+</style>
 
 <script>
   // Set the date we're counting down to
@@ -352,3 +419,13 @@
     }
   }, 1000);
 </script>
+<style type="text/css">
+               .marleft{
+                  margin-left:-100px;
+                }
+               @media only screen and (max-width: 800px){
+                .marleft{
+                  margin-left: 0px;
+                }
+              }
+            </style>

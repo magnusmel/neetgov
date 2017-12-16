@@ -18,6 +18,7 @@
       end
 
       @questions = Ecet.where(:testcount => params[:count], :short_subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{@sub}' desc").paginate(:page => params[:page], :per_page => 1)
+      @qq = Ecet.where(:testcount => params[:count], :short_subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{@sub}' desc")
       # @questions = Ecet.where(:tc => tc, :subject => ['Mathematics', 'Physics', 'Chemistry', @sub]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{@sub}' desc").paginate(:page => params[:page], :per_page => 1)
       puts @questions.count
       @submitquestion =Ecetexam.new
@@ -66,27 +67,17 @@
   end
 
   def ecetresults
-    puts "count #{params[:count]}"
-    puts "subject #{params[:subject]}"
     submit = Testcount.where(:userid => current_user, :subject => params[:subject], :testcount => params[:count]).last
     submit.update(:submited => "yes")
     @ecetresults = Ecetexam.where(:testcount => params[:count], :userid => current_user.id,:startcount => submit, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc").paginate(:page => params[:page], :per_page => 10)
-    results = Ecetexam.where(:testcount => params[:count], :userid => current_user.id, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc")
-    i=0
-    j=0
-    k=0
-    puts results.count
-    puts "******************************"
+    results = Ecetexam.where(:testcount => params[:count], :userid => current_user.id,:startcount => submit, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc")
+    @i=0    
     results.each do |r|
       answer=Ecet.find(r.question_id)
-      puts answer.answer
-      puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
       if r.answer == answer.answer
-        i+=1
+        @i+=1
       end
     end
-    puts i
-    puts "+++++++++++++++++++++++++++++++++"
     # @questions = Ecet.where(:tc => tc, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]])
   end
 

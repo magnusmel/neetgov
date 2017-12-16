@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get "/board/:id/delete" => "superadmin#delete"
   get '/superadmin/livetests' => 'superadmin#livetests'
   post '/addlivetest' => 'superadmin#addlivetest'
+  get '/delete_live_test/:id' => 'superadmin#destroy'
 
 
   # ***********  ECET  *****************

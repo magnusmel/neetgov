@@ -65,10 +65,15 @@ class SuperadminController < ApplicationController
   	livetest = Livetest.new(livetest_params)
   	if livetest.valid?
   		livetest.save
-      redirect_to "/superadmin/livetests"
+      redirect_to "/superadmin/livetests", :notice => "Live test added Successfuly"
   	else
-  		redirect_to "/superadmin/livetests"
+  		redirect_to "/superadmin/livetests", :alert => "Already Added"
   	end
+  end
+
+  def destroy
+    livetest = Livetest.find(params[:id]).delete
+    redirect_to "/superadmin/livetests", :notice => "Deleted Successfuly"
   end
 
   private

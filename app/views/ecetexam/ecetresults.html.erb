@@ -86,7 +86,11 @@
 
 					<td>
 						<%if @question.imageyes == "imageyes" %>
-							<%= image_tag(@question.imagea,:class => 'img-responsive') %>
+							<% if !@question.imagea.blank?   %>
+	                        	<%= image_tag(@question.imagea,:class => 'img-responsive', alt: "sbtet, neet") %>
+		                    <% else %>
+		                    	<%= @question.a %>
+		                    <% end %>
 						<% else %>
 							<%= @question.a %>
 						<% end %>
@@ -94,7 +98,11 @@
 					
 					<td>
 						<%if @question.imageyes == "imageyes" %>
-							<%= image_tag(@question.imageb,:class => 'img-responsive') %>
+							<% if !@question.imageb.blank?   %>
+	                        	<%= image_tag(@question.imageb,:class => 'img-responsive', alt: "sbtet, neet") %>
+		                    <% else %>
+		                    	<%= @question.b %>
+		                    <% end %>
 						<% else %>
 							<%= @question.b %>
 						<% end %>
@@ -102,7 +110,11 @@
 					
 					<td>
 						<%if @question.imageyes == "imageyes" %>
-							<%= image_tag(@question.imagec,:class => 'img-responsive') %>
+							<% if !@question.imagec.blank?   %>
+	                        	<%= image_tag(@question.imagec,:class => 'img-responsive', alt: "sbtet, neet") %>
+		                    <% else %>
+		                    	<%= @question.c %>
+		                    <% end %>
 						<% else %>
 							<%= @question.c %>
 						<% end %>
@@ -110,7 +122,11 @@
 					
 					<td>
 						<%if @question.imageyes == "imageyes" %>
-							<%= image_tag(@question.imaged,:class => 'img-responsive') %>
+							<% if !@question.imaged.blank?   %>
+	                        	<%= image_tag(@question.imaged,:class => 'img-responsive', alt: "sbtet, neet") %>
+		                    <% else %>
+		                    	<%= @question.d %>
+		                    <% end %>
 						<% else %>
 							<%= @question.d %>
 						<% end %>
@@ -155,7 +171,7 @@
 		<!-- <div class="col-md-6"> -->
 		<div class="row">
 			<div class="col-sm-6 text-danger"><b>Total Questions Attempt = <span style="font-size: 24px;color:red;"><%= @ecetresults.count %></span></b></div>
-			<div class="col-sm-6 text-success"><b>Your Correct Answer = <span style="font-size: 24px;color:green;"><%= j %></span></b></div>
+			<div class="col-sm-6 text-success"><b>Your Correct Answer = <span style="font-size: 24px;color:green;"><%= @i %></span></b></div>
 		</div>
 		<!-- </div> -->
 	</div>
