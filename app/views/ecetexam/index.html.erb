@@ -358,7 +358,7 @@
     <% i=1 %>
 
       <% @qq.ids.to_a.each do |a| %>
-        <% if Ecetexam.find_by_question_id(a).blank? %>
+        <% if Ecetexam.where(:question_id => a, :userid => current_user, :testcount => params[:count], :startcount => @time.id).last.blank? %>
           <% color = "white"%>
         <% else %>
           <% color = "lightgreen"%>
