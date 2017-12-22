@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213063630) do
+ActiveRecord::Schema.define(version: 20171219193447) do
 
   create_table "eamcets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "subject"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 20171213063630) do
     t.integer "testcount"
     t.string "status"
     t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "cet"
+    t.string "subject"
+    t.integer "userid"
+    t.integer "testcount"
+    t.integer "startcount"
+    t.integer "attempt"
+    t.integer "marks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

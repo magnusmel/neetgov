@@ -12,14 +12,19 @@
       }
 </style>
   <div class="container">    
-  
-
-    <!-- <div class="text-center flickr_pagination">
+  <!-- <div class="text-center flickr_pagination">
       <%= will_paginate @questions, :class => "flickr_pagination", :previous_label => "Previous", :next_label => 'Next', :page_links => true,:inner_window => 200, renderer: BootstrapPagination::Rails %>
     </div>
- -->    
-
-    <!-- <a href="/exam/ecet/cse/1?pageno=<%= @questions.current_page %>">current</a> -->
+ -->   
+    <br>
+  <div class="row">
+    <div class="btn-group btn-group-justified">
+      <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=1"  class="btn btn-primary">MATHS</a>
+      <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=51"  class="btn btn-primary">PHYSICS</a>
+      <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=76"  class="btn btn-primary">CHEMISTRY</a>
+      <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=101"  class="btn btn-primary"><%=params[:subject].upcase %></a>
+    </div> 
+  </div>
     
 <% @questions.each do |q| %>
   <div class="row">
@@ -364,11 +369,11 @@
           <% color = "lightgreen"%>
         <% end %>
         <% if @questions.current_page == i %>
-            <a href="/exam/ecet/cse/1?page=<%=i %>">
+            <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=<%=i %>">
             <div class="will" style="background-color:lightblue;"><%= i %></div>
              </a>
         <% else %>
-          <a href="/exam/ecet/cse/1?page=<%=i %>">
+          <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=<%=i %>">
             <div class="will" style="background-color:<%= color %>;"><%= i %></div>
              </a>
         <% end %>

@@ -7,7 +7,7 @@
    top: 0;
 }
 </style> -->
-<div class="container">
+
 
 	<!-- <div class="row">
 	      <div class="col-sm-12">
@@ -36,24 +36,24 @@
 				    </div>
 						
 				<% else %>
-						<table class="table table-bordered table-hover">
-							<tr>
-								<th class="success">Test</th>
-								<th class="success">Date</th>
-								<th class="success"></th>
+						<table class="table table-bordered table-hover bor">
+							<tr class="bor">
+								<th class="btn-primary">Test</th>
+								<th class="btn-primary">Date</th>
+								<th class="btn-primary"></th>
 							</tr>
 							
 							<% ad=@livetests.count/2 %>
 							<% ad2=@livetests.count/2 %>
 							<% count = @livetests.count %>
 						<% @livetests.each do |c| %>
-							<tr>
+							<tr class="bor">
 								<td><%= c.subject.upcase %> TEST <b><%= i %></b></td>
 								<td><%= c.created_at.strftime("#{c.created_at.day.ordinalize}-%b-%Y") %></td>
 								<td><a href="/exam/ecet/<%=c.subject %>/<%= c.testcount %>/<%= @subject %>" ><button class="btn btn-primary"> Start Exam </button></a></td>
 							</tr>
 							<% if i == ad %>
-								<tr class="text-center">
+								<tr class="text-center bor">
 									<td colspan="3">
 						 				<script async sr="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 						 				 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7665698555914778" data-ad-slot="8409268847" data-ad-format="link"></ins>
@@ -71,4 +71,5 @@
 	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7665698555914778" data-ad-slot="8409268847" data-ad-format="link"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
 	</div>
-</div>
+
+<%= render :partial =>  "layouts/instructions" %>

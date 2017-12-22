@@ -35,12 +35,12 @@
     puts @questions.count
     if @question.valid?
       @question.save
-      redirect_to "/exam/ecet/#{@question.subject}/1?page=#{@question.pageno.to_i}", :notice => "Question submitted"
+      redirect_to "/exam/ecet/#{@question.subject}/#{@question.testcount}?page=#{@question.pageno.to_i}", :notice => "Question submitted"
     else
       if @questions.count < @question.pageno.to_i
-        redirect_to "/exam/ecet/#{@question.subject}/1?page=#{@question.pageno.to_i}", :alert => "Please choose option"
+        redirect_to "/exam/ecet/#{@question.subject}/#{submitquestion_params["testcount"]}?page=#{@question.pageno.to_i}", :alert => "Please choose option"
       else
-        redirect_to "/exam/ecet/#{@question.subject}/1?page=#{@question.pageno.to_i-1}", :alert => "Please choose option"
+        redirect_to "/exam/ecet/#{@question.subject}/#{submitquestion_params["testcount"]}?page=#{@question.pageno.to_i-1}", :alert => "Please choose option"
       end
     end
   end
@@ -53,9 +53,9 @@
      @question = Ecetexam.find(params[:id])
   
     if @question.update_attributes(submitquestion_params)
-       redirect_to "/exam/ecet/#{@question.subject}/1?page=#{@question.pageno.to_i}"
+       redirect_to "/exam/ecet/#{@question.subject}/#{submitquestion_params["testcount"]}?page=#{@question.pageno.to_i}"
     else
-      redirect_to "/exam/ecet/#{@question.subject}/1"
+      redirect_to "/exam/ecet/#{@question.subject}/#{submitquestion_params["testcount"]}"
     end
 
   end
@@ -69,14 +69,18 @@
   def ecetresults
     submit = Testcount.where(:userid => current_user, :subject => params[:subject], :testcount => params[:count]).last
     submit.update(:submited => "yes")
-    @ecetresults = Ecetexam.where(:testcount => params[:count], :userid => current_user.id,:startcount => submit, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc").paginate(:page => params[:page], :per_page => 10)
-    results = Ecetexam.where(:testcount => params[:count], :userid => current_user.id,:startcount => submit, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc")
-    @i=0    
+    @ecetresults = Ecetexam.where(:testcount => params[:count], :userid => current_user.id,:startcount => submit.id, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc").paginate(:page => params[:page], :per_page => 10)
+    results = Ecetexam.where(:testcount => params[:count], :userid => current_user.id,:startcount => submit.id, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]]).order("subject = 'Mathematics' desc").order("subject = 'Physics' desc").order("subject = 'Chemistry' desc").order("subject = '#{params[:subject]}' desc")
+    @i=0
     results.each do |r|
       answer=Ecet.find(r.question_id)
       if r.answer == answer.answer
         @i+=1
       end
+    end
+    result =Result.where(:testcount => params[:count], :startcount => submit.id, :userid => current_user.id)
+    if results.blank?
+      Result.create(:marks => @i, :attempt =>results.count, :testcount => params[:count], :startcount => submit.id,:subject => params[:subject], :userid => current_user.id, :cet => "ecet")
     end
     # @questions = Ecet.where(:tc => tc, :subject => ['Mathematics', 'Physics', 'Chemistry', params[:subject]])
   end

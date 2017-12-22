@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cet: MyString
+  subject: MyString
+  userid: 1
+  testcount: 1
+  startcount: 1
+  attempt: 1
+  marks: 1
+
+two:
+  cet: MyString
+  subject: MyString
+  userid: 1
+  testcount: 1
+  startcount: 1
+  attempt: 1
+  marks: 1
