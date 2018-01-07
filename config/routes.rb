@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   namespace :admin do
     resources :users
     resources :eamcets
@@ -81,7 +79,10 @@ Rails.application.routes.draw do
   post '/addemacetque' => 'eamcet#addemacet_que'
   delete '/eamcet/question/:id/delete/:testcount/perminent' => 'eamcet#destroy'
 
-
+   # ***********  Subscribe  *****************
+  get '/ap-apsbtet-results' => "ecetsubscribe#apindex"
+  get '/ts-tssbtet-results' => "ecetsubscribe#tsindex"
+  post 'subscribe' => "ecetsubscribe#subscribe"
 
   devise_for :users, :controllers => { :registrations => 'registrations'}
   devise_scope :user do

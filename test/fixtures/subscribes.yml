@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cet: MyString
+  email: MyString
+  hallticket: MyString
+  state: MyString
+  year: MyString
+
+two:
+  cet: MyString
+  email: MyString
+  hallticket: MyString
+  state: MyString
+  year: MyString
