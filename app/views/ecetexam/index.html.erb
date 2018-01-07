@@ -1,22 +1,18 @@
 <% content_for :title, "NEET GOV ONLINE EXAMINATION PORTAL" %>
 <% content_for :description, "Neet Gov Providing All india Educations Updates, Notifications, Time tables, Results, Syllabus books, Etc. This Info for Helping Students We Are Providing Accurately for Official Conformation contact college section and higher authorities"%>
 <style type="text/css">
-.will{
-  width:5%; border:black solid 1px; border-radius: 5px; padding: 1%; float: left; margin:0.1%; text-align: center;
-}
+  .will{
+    width:5%; border:black solid 1px; border-radius: 5px; padding: 1%; float: left; margin:0.1%; text-align: center;
+  }
  .img{
-        width:250px;
-        height:150px;
-        border:2px;
-        border-radius: 5px;
+      width:250px;
+      height:150px;
+      border:2px;
+      border-radius: 5px;
       }
 </style>
-  <div class="container">    
-  <!-- <div class="text-center flickr_pagination">
-      <%= will_paginate @questions, :class => "flickr_pagination", :previous_label => "Previous", :next_label => 'Next', :page_links => true,:inner_window => 200, renderer: BootstrapPagination::Rails %>
-    </div>
- -->   
-    <br>
+
+  <div class="container"><br>
   <div class="row">
     <div class="btn-group btn-group-justified">
       <a href="/exam/ecet/<%=params[:subject] %>/<%= params[:count] %>?page=1"  class="btn btn-primary">MATHS</a>
